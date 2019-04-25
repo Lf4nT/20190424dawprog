@@ -1,43 +1,48 @@
 package examen.ejercicio2;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Ejercicio2 {
 
+	static int n;
+	static int m;
+
 	public static void main(String[] args) {
-
+		n = 0;
+		m = 0;
 		Scanner ky = new Scanner(System.in);
+		System.out.print("Introduce Dos Valores Seguidos de una Cifra: ");
+		String s = ky.next();
 
-		String s = " ";
-		int k = 0;
-		int num1;
-		int num2;
-		List<Integer> L1 = new ArrayList<>();
+		if (s.length() == 2) {
+			String[] List = s.split("");
+			n = Integer.parseInt(List[0]);
+			m = Integer.parseInt(List[1]);
+		} else {
+			System.out.println("Se esperaba un numero de dos cifras");
+		}
 
-		do {
-			System.out.print(">");
-			s = ky.nextLine();
-			String[] parts = s.split(" ");
-			String a = parts[0];
-			String b = parts[1];
-
-			for (int i = 0; i < a.length(); i++) {
-				System.out.print("->");
-				num1 = ky.nextInt();
-				L1.add(num1);
-			}
-
-			System.out.println();
-
-			for (int j = 0; j < b.length(); j++) {
-				System.out.print("->");
-				num2 = ky.nextInt();
-				L1.add(num2);
-			}
-			k = 1;
-		} while (k != 1);
-
+		for (int i = 0; i < (n + m); i++) {
+			System.out.println("->");
+			int num = ky.nextInt();
+			leerConjuntos(num).add(num);
+		}
+		ky.close();
 	}
+
+	public static Set<Integer> leerConjuntos(int num) {
+
+		Set<Integer> Conjunto1 = new HashSet<Integer>();
+		Set<Integer> Conjunto2 = new HashSet<Integer>();
+
+		if (num <= n) {
+			Conjunto1.add(num);
+		} else {
+			Conjunto2.add(num);
+		}
+		return Conjunto2;
+	}
+
 }
