@@ -5,44 +5,77 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Ejercicio2 {
+	static int n = 0;
+	static int m = 0;
+	static Set<Integer> primerConjunto = new HashSet<Integer>();
+	static Set<Integer> segundoConjunto = new HashSet<Integer>();
+	static int a = 0;
+	static int num;
 
-	static int n;
-	static int m;
+	public static void leerConjunto(int num) {
+
+		if (a == n + m) {
+			segundoConjunto.add(num);
+			System.out.println();
+			System.out.println("Segunda coleccion" + segundoConjunto);
+
+		} else {
+			if (a <= n) {
+				primerConjunto.add(num);
+
+			} else {
+				segundoConjunto.add(num);
+			}
+		}
+
+	}
 
 	public static void main(String[] args) {
-		n = 0;
-		m = 0;
-		Scanner ky = new Scanner(System.in);
-		System.out.print("Introduce Dos Valores Seguidos de una Cifra: ");
-		String s = ky.next();
 
-		if (s.length() == 2) {
-			String[] List = s.split("");
-			n = Integer.parseInt(List[0]);
-			m = Integer.parseInt(List[1]);
+		Scanner s = new Scanner(System.in);
+		String valor;
+		String[] lista = new String[1];
+
+		System.out.println("Introduce un valor de 2 cifras y separa los numero por -");
+		System.out.print("> ");
+		valor = s.next();
+		System.out.println("Valor de la cadena " + valor.length());
+
+		if (valor.contains("-") && valor.length() == 5) {
+			System.out.println(valor.length());
+			lista = valor.split("-");
+			n = Integer.parseInt(lista[0]);
+			m = Integer.parseInt(lista[1]);
 		} else {
-			System.out.println("Se esperaba un numero de dos cifras");
+			do {
+				System.out.println("Se esperaba otra cosa, andate al loro de lo que se pide CARAJOOO");
+				System.out.println("Introduce un valor:");
+				System.out.print("> ");
+				valor = s.next();
+			} while (!valor.contains("-") && valor.length() != 3);
+
+			lista = valor.split("-");
+			n = Integer.parseInt(lista[0]);
+			m = Integer.parseInt(lista[1]);
 		}
 
-		for (int i = 0; i < (n + m); i++) {
-			System.out.println("->");
-			int num = ky.nextInt();
-			leerConjuntos(num).add(num);
+		System.out.println("Introduce valores para meter los conjuntos:");
+
+		for (int i = 0; i < n; i++) {
+			System.out.print("> ");
+			num = s.nextInt();
+			a++;
+			System.out.println("Primera Coleccion posicion " + a);
+			leerConjunto(num);
 		}
-		ky.close();
+
+		for (int j = 0; j < m; j++) {
+			System.out.print("> ");
+			num = s.nextInt();
+			a++;
+			System.out.println("Segunda Coleccion posicion " + a);
+			leerConjunto(num);
+		}
+		s.close();
 	}
-
-	public static Set<Integer> leerConjuntos(int num) {
-
-		Set<Integer> Conjunto1 = new HashSet<Integer>();
-		Set<Integer> Conjunto2 = new HashSet<Integer>();
-
-		if (num <= n) {
-			Conjunto1.add(num);
-		} else {
-			Conjunto2.add(num);
-		}
-		return Conjunto2;
-	}
-
 }
