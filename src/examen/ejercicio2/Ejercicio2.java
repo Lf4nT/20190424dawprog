@@ -27,7 +27,6 @@ public class Ejercicio2 {
 				segundoConjunto.add(num);
 			}
 		}
-
 	}
 
 	public static void main(String[] args) {
